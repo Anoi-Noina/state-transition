@@ -50,6 +50,8 @@ public class TestStateMachineBase
     public async void TestRun()
     {
         var machine = new TestRunMachine(new TestRunMachineEventArgs());
+        machine.InitNodes();
+
         var value = (TestRunMachineEventArgs)await machine.Run();
         Assert.Equal(102, value.Number);
     }
@@ -94,6 +96,7 @@ public class TestStateMachineBase
     {
         // machineの生成
         var machine = new TestCancelMachine();
+        machine.InitNodes();
 
         // キャンセル処理
         var task = machine.Run();
@@ -137,6 +140,9 @@ public class TestStateMachineBase
     {
         //マシンの生成
         var machine = new TestInputAsyncMachine();
+        machine.InitNodes();
+
+        //マシンを動作
         var task = machine.Run();
 
         //入力処理
@@ -183,6 +189,9 @@ public class TestStateMachineBase
     {
         //マシンの生成
         var machine = new TestWaitInputCancelMachine();
+        machine.InitNodes();
+
+        //マシンの動作
         var task = machine.Run();
 
         //インプットキャンセル
@@ -194,6 +203,5 @@ public class TestStateMachineBase
         Assert.True(result.Time < 900); //タイムアウトで終了していないか確認する。
     }
     #endregion
-
 
 }

@@ -61,6 +61,8 @@ public class TestStateMachineBase
     public async void UnitTestMachine()
     {
         var machine = new TestMachine01();
+        machine.InitNodes();
+
         //node1
         var node1result = (Node1Result)await machine.Update(new NullStateEventArgs());
         Assert.Equal("Node1Result", node1result.Message);
@@ -109,6 +111,8 @@ public class TestStateMachineBase
     public async void TestTrans()
     {
         var machine = new TestTransMachine();
+        machine.InitNodes();
+
         //node1実行
         var data1 = (TransStateArgs)await machine.Update(new NullStateEventArgs());
         //node2実行
@@ -152,6 +156,7 @@ public class TestStateMachineBase
     public async void InputTest()
     {
         var machine = new InputTestMachine();
+        machine.InitNodes();
 
         //nodeを動作させる。
         var machine_task = machine.Update(new NullStateEventArgs());
@@ -193,6 +198,8 @@ public class TestStateMachineBase
     {
         //マシンの生成
         var machine = new OutputTestMachine();
+        machine.InitNodes();
+
         //node1を動作
         await machine.Update(new NullStateEventArgs());
         //Outputを取得

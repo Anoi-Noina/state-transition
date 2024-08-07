@@ -8,10 +8,11 @@ using Anestrelsoft.StateTransition.Core;
 Console.WriteLine("Start Do State Machine.");
 
 var machine = new StateMachineCore01();
+machine.InitNodes();
 
 IStateEventArgs? nodearg = new DoNextEventArg();
 
-Task.Run(async () =>
+_ = Task.Run(async () =>
 {
     while (!machine.IsFinished)
     {
